@@ -1,0 +1,15 @@
+<launch>
+    <arg name="ids" default="['1']"/>
+    <arg name="port" default="/dev/ttyUSB0"/>
+    <arg name="baud_rate" default="115200"/>
+
+    <node pkg="circle_car" type="commander.py" name="commander">
+        <param name="ids" type="string" value="$(arg ids)"/>
+        <param name="port" type="string" value="$(arg port)"/>
+        <param name="baud_rate" type="int" value="$(arg baud_rate)"/>
+    </node>
+
+    <node pkg="circle_car" type="controller.py" name="controller" output="log">
+        <param name="ids" type="string" value="$(arg ids)"/>
+    </node>
+</launch>
